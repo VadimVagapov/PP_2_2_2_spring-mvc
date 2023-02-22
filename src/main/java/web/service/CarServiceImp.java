@@ -1,10 +1,12 @@
 package web.service;
 
+import org.springframework.stereotype.Component;
 import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CarServiceImp implements CarService {
     private static List<Car> cars = new ArrayList<>();
 
@@ -18,7 +20,7 @@ public class CarServiceImp implements CarService {
 
     @Override
     public List<Car> getCars(int count) {
-        if (count == -1) {
+        if (count < 0) {
             return cars;
         }
         return new ArrayList<>(cars.stream().limit(count).toList());
